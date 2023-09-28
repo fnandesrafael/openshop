@@ -3,3 +3,11 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind variants;
+
+
+* {
+  box-sizing: border-box;
+  font-family: Nunito, Ubuntu, sans-serif;
+  margin: 0;
+  padding: 0;
+}
