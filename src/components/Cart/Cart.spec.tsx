@@ -1,18 +1,19 @@
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, render } from '@testing-library/react';
 import Cart from './Cart';
+
+const mockedHook = jest.fn();
 
 describe('<Cart/> component', () => {
   it('should be in the document', () => {
-    const { getByRole } = render(<Cart />);
+    const { getByRole } = render(<Cart setCanShowCart={mockedHook} />);
     const sut = getByRole('tab');
 
     expect(sut).toBeInTheDocument();
   });
 
   it('should have a header with a "Cart Items" heading, and a close button', () => {
-    const { getByRole } = render(<Cart />);
+    const { getByRole } = render(<Cart setCanShowCart={mockedHook} />);
     const [sutA, sutB, sutC] = [
       getByRole('header'),
       getByRole('heading'),
@@ -24,12 +25,12 @@ describe('<Cart/> component', () => {
     expect(sutC).toBeInTheDocument();
   });
 
-  it("when the close button is clicked, it shouldn't be anymore in the document", () => {
-    const { getByRole } = render(<Cart />);
+  it('when the close button is clicked, a setState hook is called', () => {
+    const { getByRole } = render(<Cart setCanShowCart={mockedHook} />);
     const sut = getByRole('button');
 
-    userEvent.click(sut);
+    fireEvent.click(sut);
 
-    expect(sut).not.toBeInTheDocument();
+    expect(mockedHook).toHaveBeenCalledTimes(1);
   });
 });

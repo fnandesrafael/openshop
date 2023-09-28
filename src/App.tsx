@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="h-screen w-full bg-gray-200">
       <Header />
-      <Cart />
+      <Cart setCanShowCart={() => {}} />
     </div>
   );
 }
