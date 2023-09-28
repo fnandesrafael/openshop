@@ -1,0 +1,19 @@
+on: push
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify Git Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Install Dependencies
+        run: npm i
+
+      - name: Run Eslint
+        run: npm run lint
