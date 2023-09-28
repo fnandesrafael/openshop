@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div className="h-screen w-full bg-gray-200" role="application">
-      <Header />
+      <Header setCanShowCart={setCanShowCart} />
 
       {canShowCart && <Cart setCanShowCart={setCanShowCart} />}
     </div>
