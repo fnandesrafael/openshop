@@ -21,7 +21,7 @@ export default function Cart({ setCanShowCart }: CartProps) {
 
         <button
           className="rounded-full p-1 transition-all ease-in-out  hover:bg-slate-50"
-          role="button"
+          role="close-btn"
           onClick={() => setCanShowCart(false)}
         >
           <BsArrowRightShort className="text-3xl" />
