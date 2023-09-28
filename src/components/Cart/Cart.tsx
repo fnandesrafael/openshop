@@ -2,7 +2,7 @@ import React from 'react';
 import { BsArrowRightShort } from 'react-icons/bs';
 
 type CartProps = {
-  setCanShowCart: () => void;
+  setCanShowCart: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function Cart({ setCanShowCart }: CartProps) {
@@ -22,7 +22,7 @@ export default function Cart({ setCanShowCart }: CartProps) {
         <button
           className="rounded-full p-1 transition-all ease-in-out  hover:bg-slate-50"
           role="button"
-          onClick={setCanShowCart}
+          onClick={() => setCanShowCart(false)}
         >
           <BsArrowRightShort className="text-3xl" />
         </button>
