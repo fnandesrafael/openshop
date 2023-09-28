@@ -14,9 +14,14 @@ describe('<Cart/> component', () => {
   it('should have a header with a "Cart Items" heading, and a close button', () => {
     const { getByRole } = render(<Cart />);
 
-    const [sutA, sutB] = [getByRole('tab'), getByRole('button')];
+    const [sutA, sutB, sutC] = [
+      getByRole('header'),
+      getByRole('heading'),
+      getByRole('button'),
+    ];
 
     expect(sutA).toBeInTheDocument();
     expect(sutB).toBeInTheDocument();
+    expect(sutC).toBeInTheDocument();
   });
 });
