@@ -18,4 +18,12 @@ describe('<Header/> component', () => {
 
     expect(sut).toBeInTheDocument();
   });
+
+  it('should have a button', () => {
+    const { getByRole } = render(<Header />);
+
+    const sut = getByRole('button');
+
+    expect(sut).toBeInTheDocument();
+  });
 });
