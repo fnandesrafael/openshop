@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint --ext .ts,tsx,.spec.ts,.spec.tsx",
     "preview": "vite preview",
+    "lint": "eslint --ext .ts,tsx,.spec.ts,.spec.tsx",
+    "lint:styles": "stylelint src/**/*.css",
     "test": "jest",
     "test:coverage": "jest --coverage"
   },
@@ -50,6 +51,10 @@
     "postcss": "^8.4.30",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.4",
+    "stylelint": "^15.10.3",
+    "stylelint-config-standard": "^34.0.0",
+    "stylelint-order": "^6.0.3",
+    "tailwindcss": "^3.3.3",
     "typescript": "^5.2.2",
     "vite": "^4.4.5"
   }
