@@ -10,4 +10,12 @@ describe('<Header/> component', () => {
 
     expect(sut).toBeInTheDocument();
   });
+
+  it('should have a heading with text "openshop"', () => {
+    const { getByText } = render(<Header />);
+
+    const sut = getByText(/openshop/i);
+
+    expect(sut).toBeInTheDocument();
+  });
 });
