@@ -1,8 +1,12 @@
 import React from 'react';
 import { BsArrowRightShort } from 'react-icons/bs';
 
-export default function Cart() {
-  return (
+type CartProps = {
+  canShowCart: () => void;
+};
+
+export default function Cart({ canShowCart }: CartProps) {
+  return canShowCart ? (
     <aside
       className="fixed right-0 top-0 h-screen w-full bg-white sm:w-[50%] md:w-[40%] lg:w-[30%]"
       role="tab"
@@ -22,5 +26,5 @@ export default function Cart() {
         </button>
       </header>
     </aside>
-  );
+  ) : null;
 }
