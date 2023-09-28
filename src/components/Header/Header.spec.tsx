@@ -26,4 +26,12 @@ describe('<Header/> component', () => {
 
     expect(sut).toBeInTheDocument();
   });
+
+  it('should have a log element with cart items quantity', () => {
+    const { getByRole } = render(<Header />);
+
+    const sut = getByRole('log');
+
+    expect(sut).toBeInTheDocument();
+  });
 });
