@@ -9,4 +9,37 @@ describe('<App /> component', () => {
 
     expect(sut).toBeInTheDocument();
   });
+
+  it("when first time rendered, Cart component shouldn't be in the document", () => {
+    const { queryByRole } = render(<App />);
+    const sut = queryByRole('tab');
+
+    expect(sut).toBeNull();
+  });
+
+  it('when Header cart button is clicked, Cart component should be in the document', () => {
+    const { getByRole } = render(<App />);
+    const sutA = getByRole('cart-btn');
+
+    fireEvent.click(sutA);
+
+    const sutB = getByRole('tab');
+
+    expect(sutB).toBeInTheDocument();
+  });
+
+  it("when Cart close button is clicked, Cart component shouldn't be in the document", () => {
+    const { getByRole, queryByRole } = render(<App />);
+    const sutA = getByRole('cart-btn');
+
+    fireEvent.click(sutA);
+
+    const sutB = queryByRole('close-btn');
+
+    fireEvent.click(sutB);
+
+    const sutC = queryByRole('tab');
+
+    expect(sutC).toBeNull();
+  });
 });

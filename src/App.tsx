@@ -3,7 +3,7 @@ import Header from './components/Header';
 import Cart from './components/Cart';
 
 function App() {
-  const [canShowCart, setCanShowCart] = useState(true);
+  const [canShowCart, setCanShowCart] = useState(false);
 
   return (
     <div className="h-screen w-full bg-gray-200" role="application">
