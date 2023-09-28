@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { IoCartOutline } from 'react-icons/io5';
 
-export default function Header() {
+type HeaderProps = {
+  setCanShowCart: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+function Header({ setCanShowCart }: HeaderProps) {
   return (
     <header
       className="flex h-24 w-full flex-row items-center justify-between bg-gray-200 p-8 shadow-sm"
@@ -14,7 +18,8 @@ export default function Header() {
       <div className="relative">
         <button
           className="flex h-12 w-12 flex-col items-center justify-center rounded-full border-[1px] border-solid border-black transition-all ease-in-out hover:bg-black hover:text-slate-200 hover:transition-all"
-          role="button"
+          role="cart-btn"
+          onClick={() => setCanShowCart(true)}
         >
           <IoCartOutline className="mr-[2px] text-2xl" />
         </button>
@@ -29,3 +34,5 @@ export default function Header() {
     </header>
   );
 }
+
+export default memo(Header);

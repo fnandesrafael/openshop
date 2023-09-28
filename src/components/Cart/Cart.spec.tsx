@@ -17,7 +17,7 @@ describe('<Cart/> component', () => {
     const [sutA, sutB, sutC] = [
       getByRole('header'),
       getByRole('heading'),
-      getByRole('button'),
+      getByRole('close-btn'),
     ];
 
     expect(sutA).toBeInTheDocument();
@@ -27,7 +27,7 @@ describe('<Cart/> component', () => {
 
   it('when the close button is clicked, a setState hook is called', () => {
     const { getByRole } = render(<Cart setCanShowCart={mockedHook} />);
-    const sut = getByRole('button');
+    const sut = getByRole('close-btn');
 
     fireEvent.click(sut);
 

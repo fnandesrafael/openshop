@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
 import Cart from './components/Cart';
 
 function App() {
+  const [canShowCart, setCanShowCart] = useState(false);
+
   return (
-    <div className="h-screen w-full bg-gray-200">
-      <Header />
-      <Cart setCanShowCart={() => {}} />
+    <div className="h-screen w-full bg-gray-200" role="application">
+      <Header setCanShowCart={setCanShowCart} />
+
+      {canShowCart && <Cart setCanShowCart={setCanShowCart} />}
     </div>
   );
 }
