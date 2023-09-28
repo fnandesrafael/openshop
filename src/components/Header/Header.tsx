@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { IoCartOutline } from 'react-icons/io5';
 
 type HeaderProps = {
   setCanShowCart: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function Header({ setCanShowCart }: HeaderProps) {
+function Header({ setCanShowCart }: HeaderProps) {
   return (
     <header
       className="flex h-24 w-full flex-row items-center justify-between bg-gray-200 p-8 shadow-sm"
@@ -34,3 +34,5 @@ export default function Header({ setCanShowCart }: HeaderProps) {
     </header>
   );
 }
+
+export default memo(Header);

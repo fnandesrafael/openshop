@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { BsArrowRightShort } from 'react-icons/bs';
 
 type CartProps = {
   setCanShowCart: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function Cart({ setCanShowCart }: CartProps) {
+function Cart({ setCanShowCart }: CartProps) {
   return (
     <aside
       className="fixed right-0 top-0 h-screen w-full bg-white sm:w-[50%] md:w-[40%] lg:w-[30%]"
@@ -30,3 +30,5 @@ export default function Cart({ setCanShowCart }: CartProps) {
     </aside>
   );
 }
+
+export default memo(Cart);
