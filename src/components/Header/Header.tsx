@@ -7,7 +7,7 @@ export default function Header() {
       className="flex h-[4.5rem] w-full flex-row items-center justify-between bg-gray-200 p-6 shadow-sm"
       role="header"
     >
-      <h1 className="text-base font-medium" role="heading">
+      <h1 className="text-lg font-semibold" role="heading">
         openshop
       </h1>
 
