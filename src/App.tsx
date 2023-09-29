@@ -7,7 +7,7 @@ import Cart from './components/Cart';
 
 function App() {
   const [canShowCart, setCanShowCart] = useState(false);
-  const { data } = useQuery({ queryKey: 'store', queryFn: getData });
+  const { data } = useQuery({ queryKey: 'openshop-db', queryFn: getData });
 
   console.log(data);
 
