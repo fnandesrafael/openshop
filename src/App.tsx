@@ -18,7 +18,9 @@ function App() {
         {canShowCart && <Cart setCanShowCart={setCanShowCart} />}
       </AnimatePresence>
 
-      <SearchBar />
+      <section className="ml-[4%] flex flex-col gap-4">
+        <SearchBar />
+      </section>
     </div>
   );
 }
