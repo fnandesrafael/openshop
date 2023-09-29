@@ -28,7 +28,7 @@ describe('<App /> component', () => {
     expect(sutB).toBeInTheDocument();
   });
 
-  it("when Cart close button is clicked, Cart component shouldn't be in the document", () => {
+  it("when Cart close button is clicked, Cart component shouldn't be in the document", async () => {
     const { getByRole, queryByRole } = render(<App />);
     const sutA = getByRole('cart-btn');
 
@@ -37,6 +37,8 @@ describe('<App /> component', () => {
     const sutB = queryByRole('close-btn');
 
     fireEvent.click(sutB);
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     const sutC = queryByRole('tab');
 
