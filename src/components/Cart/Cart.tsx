@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { motion } from 'framer-motion';
 import { BsArrowRightShort } from 'react-icons/bs';
 
 type CartProps = {
@@ -7,8 +8,12 @@ type CartProps = {
 
 function Cart({ setCanShowCart }: CartProps) {
   return (
-    <aside
-      className="fixed right-0 top-0 h-screen w-full bg-white sm:w-[50%] md:w-[40%] lg:w-[30%]"
+    <motion.aside
+      initial={{ x: 500 }}
+      animate={{ x: 0 }}
+      exit={{ x: 500 }}
+      transition={{ damping: 25, type: 'spring', stiffness: 250 }}
+      className="fixed right-0 top-0 h-screen w-full origin-right bg-white sm:w-[50%] md:w-[40%] lg:w-[30%]"
       role="tab"
     >
       <header
@@ -27,7 +32,7 @@ function Cart({ setCanShowCart }: CartProps) {
           <BsArrowRightShort className="text-3xl" />
         </button>
       </header>
-    </aside>
+    </motion.aside>
   );
 }
 
