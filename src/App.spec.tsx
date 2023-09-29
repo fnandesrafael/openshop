@@ -1,24 +1,43 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import App from './App';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { refetchOnWindowFocus: false, refetchInterval: 0 },
+  },
+});
 
 describe('<App /> component', () => {
   it('should be in the document', () => {
-    const { getByRole } = render(<App />);
+    const { getByRole } = render(
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>,
+    );
     const sut = getByRole('application');
 
     expect(sut).toBeInTheDocument();
   });
 
   it("when first time rendered, Cart component shouldn't be in the document", () => {
-    const { queryByRole } = render(<App />);
+    const { queryByRole } = render(
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>,
+    );
     const sut = queryByRole('tab');
 
     expect(sut).toBeNull();
   });
 
   it('when Header cart button is clicked, Cart component should be in the document', () => {
-    const { getByRole } = render(<App />);
+    const { getByRole } = render(
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>,
+    );
     const sutA = getByRole('cart-btn');
 
     fireEvent.click(sutA);
@@ -29,7 +48,11 @@ describe('<App /> component', () => {
   });
 
   it("when Cart close button is clicked, Cart component shouldn't be in the document", async () => {
-    const { getByRole, queryByRole } = render(<App />);
+    const { getByRole, queryByRole } = render(
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>,
+    );
     const sutA = getByRole('cart-btn');
 
     fireEvent.click(sutA);
