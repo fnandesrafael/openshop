@@ -1,59 +1,30 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
-export default function SearchTags() {
+type SearchTagsProps = {
+  categories: Array<string>;
+};
+
+export default function SearchTags({ categories }: SearchTagsProps) {
   return (
     <div className="flex flex-row gap-4 rounded-sm">
-      <label
-        className="flex h-6 flex-col items-center justify-center rounded-sm bg-white p-4 hover:cursor-pointer hover:bg-slate-50"
-        htmlFor="electronics"
-      >
-        electronics
-        <input
-          className="hidden"
-          type="checkbox"
-          id="electronics"
-          role="searchbox"
-        />
-      </label>
-
-      <label
-        className="flex h-6 flex-col items-center justify-center rounded-sm bg-white p-4 hover:cursor-pointer hover:bg-slate-50"
-        htmlFor="jewelery"
-      >
-        jewelery
-        <input
-          className="hidden"
-          type="checkbox"
-          id="jewelery"
-          role="searchbox"
-        />
-      </label>
-
-      <label
-        className="flex h-6 flex-col items-center justify-center rounded-sm bg-white p-4 hover:cursor-pointer hover:bg-slate-50"
-        htmlFor="men's clothing"
-      >
-        men's clothing
-        <input
-          className="hidden"
-          type="checkbox"
-          id="men's clothing"
-          role="searchbox"
-        />
-      </label>
-
-      <label
-        className="flex h-6 flex-col items-center justify-center rounded-sm bg-white p-4 hover:cursor-pointer hover:bg-slate-50"
-        htmlFor="women's clothing"
-      >
-        women's clothing
-        <input
-          className="hidden"
-          type="checkbox"
-          id="women's clothing"
-          role="searchbox"
-        />
-      </label>
+      {categories?.map((category, index) => (
+        <motion.label
+          key={index}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1, transition: { delay: index / 100 } }}
+          className="flex h-6 flex-col items-center justify-center rounded-sm bg-white p-4 hover:cursor-pointer hover:bg-slate-50"
+          htmlFor={category}
+        >
+          {category}
+          <input
+            className="hidden"
+            role="searchbox"
+            type="checkbox"
+            id={category}
+          />
+        </motion.label>
+      ))}
     </div>
   );
 }

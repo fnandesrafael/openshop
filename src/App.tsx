@@ -21,7 +21,7 @@ function App() {
 
       <section className="ml-[4%] flex flex-col gap-4">
         <SearchBar />
-        <SearchTags />
+        <SearchTags categories={data?.categories} />
       </section>
     </div>
   );
