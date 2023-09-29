@@ -6,13 +6,14 @@ import Header from './components/Header';
 import Cart from './components/Cart';
 import SearchBar from './components/SearchBar';
 import SearchTags from './components/SearchTag';
+import ProductCard from './components/ProductCard/ProductCard';
 
 function App() {
   const [canShowCart, setCanShowCart] = useState(false);
   const { data } = useQuery({ queryKey: 'openshop-db', queryFn: getData });
 
   return (
-    <div className="h-screen w-full bg-gray-200" role="application">
+    <div className="h-full w-full bg-gray-200" role="application">
       <Header setCanShowCart={setCanShowCart} />
 
       <AnimatePresence mode="wait">
@@ -23,6 +24,10 @@ function App() {
         <SearchBar />
         <SearchTags categories={data?.categories} />
       </section>
+
+      <main className="ml-[2%] mt-16 flex w-[96%] flex-row flex-wrap items-center justify-center gap-[1.9rem]">
+        {data?.products?.map((_, i) => <ProductCard key={i} />)}
+      </main>
     </div>
   );
 }
