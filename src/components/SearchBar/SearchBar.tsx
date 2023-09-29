@@ -1,4 +1,5 @@
 import React from 'react';
+import { BiSearch } from 'react-icons/bi';
 
 export default function SearchBar() {
   return (
@@ -7,9 +8,15 @@ export default function SearchBar() {
         <input
           type="text"
           placeholder="lorem ipsum sit dolor"
-          className="w-[80%] rounded-sm bg-white p-3 text-base outline-none placeholder:text-sm placeholder:text-slate-300"
+          className="w-full rounded-sm bg-white p-3 text-base outline-none placeholder:text-sm placeholder:text-slate-300"
           role="search"
         />
+        <button
+          className="flex w-14 flex-col items-center justify-center rounded-r-sm bg-black"
+          role="search-btn"
+        >
+          <BiSearch className="text-xl text-white" />
+        </button>
       </div>
     </section>
   );
