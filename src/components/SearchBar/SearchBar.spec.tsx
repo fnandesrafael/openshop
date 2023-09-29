@@ -9,4 +9,11 @@ describe('<SearchBar/> component', () => {
 
     expect(sut).toBeInTheDocument();
   });
+
+  it('should have a search button', () => {
+    const { getByRole } = render(<SearchBar />);
+    const sut = getByRole('search-btn');
+
+    expect(sut).toBeInTheDocument();
+  });
 });
