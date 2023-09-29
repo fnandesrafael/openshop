@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { BiSearch } from 'react-icons/bi';
 
-export default function SearchBar() {
+function SearchBar() {
   return (
     <div className="flex w-[96%] flex-row rounded-sm bg-white">
       <input
         type="text"
         placeholder="lorem ipsum sit dolor"
-        className="w-full rounded-sm bg-white p-3 text-base outline-none placeholder:text-sm placeholder:text-slate-300"
+        className="w-full bg-transparent p-3 text-base outline-none placeholder:text-sm placeholder:text-slate-300"
         role="search"
       />
       <button
@@ -19,3 +19,5 @@ export default function SearchBar() {
     </div>
   );
 }
+
+export default memo(SearchBar);
