@@ -13,7 +13,7 @@ function App() {
   const { data } = useQuery({ queryKey: 'openshop-db', queryFn: getData });
 
   return (
-    <div className="h-full w-full bg-gray-200" role="application">
+    <div className="h-full min-h-screen w-full bg-gray-200" role="application">
       <Header setCanShowCart={setCanShowCart} />
 
       <AnimatePresence mode="wait">
