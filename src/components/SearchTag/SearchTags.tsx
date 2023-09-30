@@ -29,8 +29,8 @@ function SearchTags({ categories }: SearchTagsProps) {
           <p className="p-3">{category}</p>
           <input
             className="hidden"
-            role="searchbox"
             type="checkbox"
+            role="searchbox"
             onChange={({ target }) =>
               setCheckedTags((prevState) => ({
                 ...prevState,
