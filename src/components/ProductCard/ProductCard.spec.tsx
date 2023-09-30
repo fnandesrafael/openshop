@@ -20,4 +20,26 @@ describe('<ProductCard/> component', () => {
 
     expect(sut).toBeInTheDocument();
   });
+
+  it('should have a sectin with role card', () => {
+    const { getByRole } = render(<ProductCard data={mockedData} />);
+    const sut = getByRole('card');
+
+    expect(sut).toBeInTheDocument();
+  });
+
+  it('should have two containers roled as contentinfo and preview', () => {
+    const { getByRole } = render(<ProductCard data={mockedData} />);
+    const [sutA, sutB] = [getByRole('preview'), getByRole('contentinfo')];
+
+    expect(sutA).toBeInTheDocument();
+    expect(sutB).toBeInTheDocument();
+  });
+
+  it('should have an add to cart button', () => {
+    const { getByRole } = render(<ProductCard data={mockedData} />);
+    const sut = getByRole('add-btn');
+
+    expect(sut).toBeInTheDocument();
+  });
 });
