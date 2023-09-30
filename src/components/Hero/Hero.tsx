@@ -1,5 +1,6 @@
 import React from 'react';
 import stockVideo from '../../assets/stock.mp4';
+import ScrollTip from '../ScrollTip';
 
 export default function Hero() {
   return (
@@ -14,6 +15,8 @@ export default function Hero() {
       </h1>
 
       <video className="w-full" src={stockVideo} loop autoPlay muted />
+
+      <ScrollTip />
     </section>
   );
 }

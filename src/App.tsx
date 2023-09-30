@@ -28,7 +28,7 @@ function App() {
         <SearchTags categories={data?.categories as Array<string>} />
       </section>
 
-      <main className="ml-[4%] mt-16 flex w-[96%] flex-row flex-wrap items-center justify-start gap-[1.9rem]">
+      <main className="ml-[4%] mt-16 flex w-[96%] flex-row flex-wrap items-center justify-start gap-8">
         {data?.products?.map((product: ProductProps) => (
           <ProductCard data={product} key={product.id} />
         ))}
