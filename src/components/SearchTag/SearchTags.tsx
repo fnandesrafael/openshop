@@ -18,19 +18,19 @@ function SearchTags({ categories }: SearchTagsProps) {
       {categories?.map((category, index) => (
         <motion.label
           key={index}
-          whileTap={{ scale: 0.8 }}
-          className={`flex h-9 flex-col items-center justify-center rounded-md p-4 hover:cursor-pointer ${
+          whileTap={{ scale: 0.9 }}
+          className={`flex h-8 flex-col items-center justify-center rounded-md hover:cursor-pointer ${
             checkedTags[category]
               ? 'bg-black text-white hover:bg-slate-950'
               : 'bg-white text-black hover:bg-slate-50'
           }`}
           htmlFor={category}
         >
-          {category}
+          <p className="p-3">{category}</p>
           <input
             className="hidden"
-            role="searchbox"
             type="checkbox"
+            role="searchbox"
             onChange={({ target }) =>
               setCheckedTags((prevState) => ({
                 ...prevState,

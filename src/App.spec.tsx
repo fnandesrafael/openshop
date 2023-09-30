@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { act } from 'react-dom/test-utils';
 import App from './App';
 
 const queryClient = new QueryClient({
@@ -40,7 +41,9 @@ describe('<App /> component', () => {
     );
     const sutA = getByRole('cart-btn');
 
-    fireEvent.click(sutA);
+    act(() => {
+      fireEvent.click(sutA);
+    });
 
     const sutB = getByRole('tab');
 
@@ -55,13 +58,19 @@ describe('<App /> component', () => {
     );
     const sutA = getByRole('cart-btn');
 
-    fireEvent.click(sutA);
+    act(() => {
+      fireEvent.click(sutA);
+    });
 
     const sutB = queryByRole('close-btn');
 
-    fireEvent.click(sutB);
+    act(() => {
+      fireEvent.click(sutB);
+    });
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    });
 
     const sutC = queryByRole('tab');
 

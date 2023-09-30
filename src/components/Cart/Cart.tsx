@@ -13,7 +13,7 @@ function Cart({ setCanShowCart }: CartProps) {
       animate={{ x: 0 }}
       exit={{ x: 500 }}
       transition={{ damping: 25, type: 'spring', stiffness: 250 }}
-      className="fixed right-0 top-0 h-screen w-full origin-right bg-white sm:w-[50%] md:w-[40%] lg:w-[30%]"
+      className="fixed right-0 top-0 z-10 h-screen w-full origin-right bg-white sm:w-[50%] md:w-[40%] lg:w-[30%]"
       role="tab"
     >
       <header
