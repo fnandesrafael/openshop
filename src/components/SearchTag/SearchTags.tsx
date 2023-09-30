@@ -19,7 +19,7 @@ function SearchTags({ categories }: SearchTagsProps) {
         <motion.label
           key={index}
           whileTap={{ scale: 0.9 }}
-          className={`flex h-8 flex-col items-center justify-center rounded-md hover:cursor-pointer ${
+          className={`flex h-8 flex-col items-center justify-center rounded-sm hover:cursor-pointer ${
             checkedTags[category]
               ? 'bg-black text-white hover:bg-slate-950'
               : 'bg-white text-black hover:bg-slate-50'
