@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import { motion } from 'framer-motion';
 import { TbShoppingCartPlus } from 'react-icons/tb';
 import { ProductProps } from '../../api';
+import { reduceText } from '../../utils';
 
 type ProductCardProps = {
   data: ProductProps;
@@ -36,9 +37,13 @@ function ProductCard({ data }: ProductCardProps) {
 
       <div className="flex h-[20%] flex-col justify-start" role="contentinfo">
         <h1 className="text-xl font-semibold">{`$ ${data.price}`}</h1>
-        <span className="text-sm">{`★ ${data.rating.rate}`}</span>
-        <h5 className="overflow-hidden text-base underline-offset-8 hover:cursor-pointer hover:underline">
-          {data.title}
+        <span
+          className={`text-sm ${
+            data.rating.rate < 3 ? 'text-amber-500' : 'text-emerald-600'
+          }`}
+        >{`★ ${data.rating.rate}`}</span>
+        <h5 className="text-base underline-offset-8 hover:cursor-pointer hover:underline">
+          {reduceText(data.title, 30)}
         </h5>
       </div>
     </section>
