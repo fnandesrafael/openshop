@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { motion } from 'framer-motion';
 import { TbShoppingCartPlus } from 'react-icons/tb';
 import { ProductProps } from '../../api';
-import { reduceText } from '../../utils';
+import trimText from '../../utils/trimText';
 
 type ProductCardProps = {
   data: ProductProps;
@@ -32,6 +32,7 @@ function ProductCard({ data }: ProductCardProps) {
           className="scale-50 transition-all duration-700 ease-in-out hover:duration-700 group-hover:scale-75"
           src={data.image}
           alt={data.description}
+          loading="lazy"
         />
       </div>
 
@@ -43,7 +44,7 @@ function ProductCard({ data }: ProductCardProps) {
           }`}
         >{`★ ${data.rating.rate}`}</span>
         <h5 className="text-base underline-offset-8 hover:cursor-pointer hover:underline">
-          {reduceText(data.title, 30)}
+          {trimText(data.title, 30)}
         </h5>
       </div>
     </section>
