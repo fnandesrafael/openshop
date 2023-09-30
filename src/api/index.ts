@@ -13,15 +13,33 @@ export type ProductProps = {
   title: string;
 };
 
+const filterElectronics = (items: Array<string> | Array<ProductProps>) => {
+  if (typeof items[0] === 'string') {
+    const filteredItems = items.filter((item: string) => {
+      return item !== 'electronics';
+    });
+
+    return filteredItems;
+  }
+  const filteredItems = items.filter((item: ProductProps) => {
+    return item.category !== 'electronics';
+  });
+
+  return filteredItems;
+};
+
 const getData = async () => {
-  const products = await axios.get<Array<ProductProps>>(
-    'https://fakestoreapi.com/products',
+  const products = filterElectronics(
+    (await axios.get('https://fakestoreapi.com/products')).data,
   );
-  const categories = await axios.get<Array<string>>(
-    'https://fakestoreapi.com/products/categories',
+  const categories = filterElectronics(
+    (await axios.get('https://fakestoreapi.com/products/categories')).data,
   );
 
-  return { categories: categories.data, products: products.data };
+  return {
+    categories,
+    products,
+  };
 };
 
 export default getData;
