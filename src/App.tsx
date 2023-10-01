@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { useQuery } from 'react-query';
-import { getProducts, getCategories, ProductProps } from './api';
+import { getProducts, ProductProps } from './api';
 import Header from './components/Header';
 import Cart from './components/Cart';
 import SearchBar from './components/SearchBar';
-import SearchTags from './components/SearchTag';
+import SearchTags, { Skeleton as SearchTagsSkel } from './components/SearchTag';
 import ProductCard from './components/ProductCard';
 import Hero from './components/Hero';
 
@@ -14,10 +14,6 @@ function App() {
   const { data: products } = useQuery({
     queryKey: ['products'],
     queryFn: getProducts,
-  });
-  const { data: categories } = useQuery({
-    queryKey: ['categories'],
-    queryFn: getCategories,
   });
 
   return (
@@ -32,7 +28,9 @@ function App() {
 
       <section className="ml-[4%] flex flex-col gap-4">
         <SearchBar />
-        {categories && <SearchTags categories={categories} />}
+        <Suspense fallback={<SearchTagsSkel />}>
+          <SearchTags />
+        </Suspense>
       </section>
 
       <main className="ml-[4%] mt-16 flex w-[96%] flex-row flex-wrap items-center justify-start gap-8">

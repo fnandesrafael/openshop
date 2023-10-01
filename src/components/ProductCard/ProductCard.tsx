@@ -32,6 +32,7 @@ function ProductCard({ data }: ProductCardProps) {
           className="scale-50 transition-all duration-700 ease-in-out hover:duration-700 group-hover:scale-75"
           src={data.image}
           alt={data.description}
+          loading="lazy"
         />
       </div>
 

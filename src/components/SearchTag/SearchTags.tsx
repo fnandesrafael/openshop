@@ -1,11 +1,15 @@
 import React, { useState, memo } from 'react';
 import { motion } from 'framer-motion';
+import { useQuery } from 'react-query';
+import { getCategories } from '../../api';
 
-type SearchTagsProps = {
-  categories: Array<string>;
-};
+function SearchTags() {
+  const { data: categories } = useQuery({
+    queryKey: ['categories'],
+    queryFn: getCategories,
+    suspense: true,
+  });
 
-function SearchTags({ categories }: SearchTagsProps) {
   const [checkedTags, setCheckedTags] = useState({
     elecronics: false,
     jewelery: false,
