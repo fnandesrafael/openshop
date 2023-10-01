@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { motion } from 'framer-motion';
 import stockVideo from '../../assets/stock.mp4';
 import ScrollTip from '../ScrollTip';
 
-export default function Hero() {
+function Hero() {
   return (
     <section
       className="relative mb-12 h-[52vw] w-full overflow-hidden"
@@ -25,3 +25,5 @@ export default function Hero() {
     </section>
   );
 }
+
+export default memo(Hero);

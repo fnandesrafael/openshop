@@ -16,6 +16,7 @@ function Products() {
     <>
       {products.map((product) => (
         <section
+          key={product.id}
           className="flex h-96 w-72 flex-col justify-between gap-8 rounded-sm"
           role="card"
         >
