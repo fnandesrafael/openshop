@@ -24,14 +24,14 @@ function App() {
       <Hero />
 
       <div className="mx-[4%] flex flex-col items-center justify-center">
-        <section className="my-[4%] flex w-full flex-col gap-4">
+        <section className="my-[4%] flex w-[18rem] flex-col gap-4 sm:w-[38rem] xl:w-[78rem] 2xl:w-[118rem]">
           <SearchBar />
           <Suspense fallback={<SearchTagsSkel />}>
             <SearchTags />
           </Suspense>
         </section>
 
-        <main className="flex w-full flex-row flex-wrap items-center justify-evenly gap-8">
+        <main className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-6">
           <Suspense fallback={<ProductCardSkel />}>
             <Products />
           </Suspense>

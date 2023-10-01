@@ -10,9 +10,9 @@ function Cart({ setCanShowCart }: CartProps) {
   return (
     <>
       <motion.aside
-        initial={{ x: 425 }}
+        initial={{ x: 750 }}
         animate={{ x: 0 }}
-        exit={{ x: 425 }}
+        exit={{ x: 750 }}
         transition={{ damping: 25, type: 'spring', stiffness: 250 }}
         className="fixed right-0 top-0 z-20 h-screen w-full origin-right bg-white sm:w-[50%] md:w-[40%] lg:w-[30%]"
         role="tab"
