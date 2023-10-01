@@ -23,18 +23,20 @@ function App() {
 
       <Hero />
 
-      <section className="ml-[4%] flex flex-col gap-4">
-        <SearchBar />
-        <Suspense fallback={<SearchTagsSkel />}>
-          <SearchTags />
-        </Suspense>
-      </section>
+      <div className="mx-[4%] flex flex-col items-center justify-center">
+        <section className="my-[4%] flex w-full flex-col gap-4">
+          <SearchBar />
+          <Suspense fallback={<SearchTagsSkel />}>
+            <SearchTags />
+          </Suspense>
+        </section>
 
-      <main className="ml-[4%] mt-16 flex w-[96%] flex-row flex-wrap items-center justify-start gap-8">
-        <Suspense fallback={<ProductCardSkel />}>
-          <Products />
-        </Suspense>
-      </main>
+        <main className="flex w-full flex-row flex-wrap items-center justify-evenly gap-8">
+          <Suspense fallback={<ProductCardSkel />}>
+            <Products />
+          </Suspense>
+        </main>
+      </div>
     </div>
   );
 }
