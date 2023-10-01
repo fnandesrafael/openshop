@@ -17,8 +17,11 @@ const skeletonMotion: Variants = {
 export default function Skeleton() {
   return (
     <>
-      {Array.from({ length: 4 }).map(() => (
-        <section className="flex h-96 w-72 flex-col justify-between gap-8 rounded-sm">
+      {Array.from({ length: 4 }).map((_, index) => (
+        <section
+          key={index}
+          className="flex h-96 w-72 flex-col justify-between gap-8 rounded-sm"
+        >
           <motion.div
             {...skeletonMotion}
             className="group relative flex h-[80%] w-full flex-col justify-center overflow-hidden bg-white shadow-sm"
