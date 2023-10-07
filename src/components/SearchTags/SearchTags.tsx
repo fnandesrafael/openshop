@@ -1,9 +1,11 @@
-import React, { useState, memo } from 'react';
+import React, { useState, memo, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useQuery } from 'react-query';
 import { getCategories } from '../../api';
+import useProductStore from '../../store/productStore';
 
 function SearchTags() {
+  const { products, filterProducts } = useProductStore();
   const { data: categories } = useQuery({
     queryKey: ['categories'],
     queryFn: getCategories,
@@ -18,6 +20,13 @@ function SearchTags() {
   });
 
   const checkedTags = Object.keys(tags).filter((key) => tags[key]);
+
+  useEffect(() => {
+    filterProducts(
+      products.filter((product) => checkedTags.includes(product.category)),
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tags]);
 
   return (
     <div className="flex flex-row gap-4 rounded-sm">
@@ -37,12 +46,12 @@ function SearchTags() {
             className="hidden"
             type="checkbox"
             role="searchbox"
-            onChange={({ target }) =>
+            onChange={({ target }) => {
               setTags((prevState) => ({
                 ...prevState,
                 [target.id]: !prevState[target.id],
-              }))
-            }
+              }));
+            }}
             id={category}
           />
         </motion.label>
