@@ -31,7 +31,7 @@ function App() {
           </Suspense>
         </section>
 
-        <main className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-6">
+        <main className="mb-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-6">
           <Suspense fallback={<ProductsSkeleton />}>
             <Products />
           </Suspense>
