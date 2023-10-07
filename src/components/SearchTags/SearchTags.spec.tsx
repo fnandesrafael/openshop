@@ -7,13 +7,14 @@ import SearchTags from './SearchTags';
 const mockedSetState = jest.fn();
 const mockedCategories = Array.from({ length: 4 });
 
-jest.mock('react-query', () => ({
-  ...jest.requireActual('react-query'),
-  useQuery: jest.fn(() => ({ data: mockedCategories })),
-}));
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
   useState: () => [{}, mockedSetState],
+  useEffect: jest.fn(),
+}));
+jest.mock('react-query', () => ({
+  ...jest.requireActual('react-query'),
+  useQuery: jest.fn(() => ({ data: mockedCategories })),
 }));
 
 const queryClient = new QueryClient({
