@@ -13,7 +13,7 @@ export type ProductProps = {
   title: string;
 };
 
-const filterElectronics = (items: Array<string> | Array<ProductProps>) => {
+const filterElectronics = (items: Array<string | ProductProps>) => {
   if (typeof items[0] === 'string') {
     const filteredItems = items.filter((item: string) => {
       return item !== 'electronics';
@@ -28,18 +28,24 @@ const filterElectronics = (items: Array<string> | Array<ProductProps>) => {
   return filteredItems;
 };
 
-const getData = async () => {
+const getProducts = async (): Promise<Array<ProductProps>> => {
   const products = filterElectronics(
-    (await axios.get('https://fakestoreapi.com/products')).data,
-  );
-  const categories = filterElectronics(
-    (await axios.get('https://fakestoreapi.com/products/categories')).data,
-  );
+    await (
+      await axios.get('https://fakestoreapi.com/products')
+    ).data,
+  ) as Array<ProductProps>;
 
-  return {
-    categories,
-    products,
-  };
+  return products;
 };
 
-export default getData;
+const getCategories = async (): Promise<Array<string>> => {
+  const categories = filterElectronics(
+    await (
+      await axios.get('https://fakestoreapi.com/products/categories')
+    ).data,
+  ) as Array<string>;
+
+  return categories;
+};
+
+export { getProducts, getCategories };

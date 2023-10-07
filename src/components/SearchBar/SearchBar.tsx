@@ -3,7 +3,7 @@ import { BiSearch } from 'react-icons/bi';
 
 function SearchBar() {
   return (
-    <div className="flex w-[96%] flex-row rounded-sm bg-white">
+    <div className="flex w-full flex-row rounded-sm bg-white">
       <input
         type="text"
         placeholder="lorem ipsum sit dolor"

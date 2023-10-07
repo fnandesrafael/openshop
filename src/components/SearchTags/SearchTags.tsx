@@ -1,17 +1,32 @@
-import React, { useState, memo } from 'react';
+import React, { useState, memo, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useQuery } from 'react-query';
+import { getCategories } from '../../api';
+import useProductStore from '../../store/productStore';
 
-type SearchTagsProps = {
-  categories: Array<string>;
-};
+function SearchTags() {
+  const { products, filterProducts } = useProductStore();
+  const { data: categories } = useQuery({
+    queryKey: ['categories'],
+    queryFn: getCategories,
+    suspense: true,
+  });
 
-function SearchTags({ categories }: SearchTagsProps) {
-  const [checkedTags, setCheckedTags] = useState({
+  const [tags, setTags] = useState({
     elecronics: false,
     jewelery: false,
     "men's clothing": false,
     "women's clothing": false,
   });
+
+  const checkedTags = Object.keys(tags).filter((key) => tags[key]);
+
+  useEffect(() => {
+    filterProducts(
+      products.filter((product) => checkedTags.includes(product.category)),
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tags]);
 
   return (
     <div className="flex flex-row gap-4 rounded-sm">
@@ -20,7 +35,7 @@ function SearchTags({ categories }: SearchTagsProps) {
           key={index}
           whileTap={{ scale: 0.9 }}
           className={`flex h-8 flex-col items-center justify-center rounded-sm hover:cursor-pointer ${
-            checkedTags[category]
+            tags[category]
               ? 'bg-black text-white hover:bg-slate-950'
               : 'bg-white text-black hover:bg-slate-50'
           }`}
@@ -31,12 +46,12 @@ function SearchTags({ categories }: SearchTagsProps) {
             className="hidden"
             type="checkbox"
             role="searchbox"
-            onChange={({ target }) =>
-              setCheckedTags((prevState) => ({
+            onChange={({ target }) => {
+              setTags((prevState) => ({
                 ...prevState,
                 [target.id]: !prevState[target.id],
-              }))
-            }
+              }));
+            }}
             id={category}
           />
         </motion.label>
