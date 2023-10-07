@@ -20,6 +20,15 @@ jest.mock('react-query', () => ({
   ...jest.requireActual('react-query'),
   useQuery: jest.fn(() => ({ data: mockedProducts })),
 }));
+jest.mock('zustand', () => ({
+  ...jest.requireActual('zustand'),
+  create: jest.fn(() => (set) => ({
+    products: mockedProducts,
+    filteredProducts: [],
+    setProducts: (payload) => set({ products: payload }),
+    filterProducts: (payload) => set({ filteredProducts: payload }),
+  })),
+}));
 
 const queryClient = new QueryClient({
   defaultOptions: {
