@@ -1,3 +1,4 @@
+import 'intersection-observer';
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -17,8 +18,8 @@ describe('<App /> component', () => {
         <App />
       </QueryClientProvider>,
     );
-    const sut = getByRole('application');
 
+    const sut = getByRole('application');
     expect(sut).toBeInTheDocument();
   });
 

@@ -3,8 +3,8 @@ import { AnimatePresence } from 'framer-motion';
 import Header from './components/Header';
 import Cart from './components/Cart';
 import SearchBar from './components/SearchBar';
-import { Skeleton as SearchTagsSkel } from './components/SearchTags';
-import { Skeleton as ProductCardSkel } from './components/Products';
+import { Skeleton as SearchTagsSkeleton } from './components/SearchTags';
+import { Skeleton as ProductsSkeleton } from './components/Products';
 import Hero from './components/Hero';
 
 const SearchTags = lazy(() => import('./components/SearchTags'));
@@ -26,13 +26,13 @@ function App() {
       <div className="mx-[4%] flex flex-col items-center justify-center">
         <section className="my-[4%] flex w-[18rem] flex-col gap-4 sm:w-[38rem] xl:w-[78rem] 2xl:w-[118rem]">
           <SearchBar />
-          <Suspense fallback={<SearchTagsSkel />}>
+          <Suspense fallback={<SearchTagsSkeleton />}>
             <SearchTags />
           </Suspense>
         </section>
 
         <main className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-6">
-          <Suspense fallback={<ProductCardSkel />}>
+          <Suspense fallback={<ProductsSkeleton />}>
             <Products />
           </Suspense>
         </main>
