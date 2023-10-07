@@ -10,12 +10,14 @@ function SearchTags() {
     suspense: true,
   });
 
-  const [checkedTags, setCheckedTags] = useState({
+  const [tags, setTags] = useState({
     elecronics: false,
     jewelery: false,
     "men's clothing": false,
     "women's clothing": false,
   });
+
+  const checkedTags = Object.keys(tags).filter((key) => tags[key]);
 
   return (
     <div className="flex flex-row gap-4 rounded-sm">
@@ -24,7 +26,7 @@ function SearchTags() {
           key={index}
           whileTap={{ scale: 0.9 }}
           className={`flex h-8 flex-col items-center justify-center rounded-sm hover:cursor-pointer ${
-            checkedTags[category]
+            tags[category]
               ? 'bg-black text-white hover:bg-slate-950'
               : 'bg-white text-black hover:bg-slate-50'
           }`}
@@ -36,7 +38,7 @@ function SearchTags() {
             type="checkbox"
             role="searchbox"
             onChange={({ target }) =>
-              setCheckedTags((prevState) => ({
+              setTags((prevState) => ({
                 ...prevState,
                 [target.id]: !prevState[target.id],
               }))
