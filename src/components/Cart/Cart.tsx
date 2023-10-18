@@ -53,8 +53,13 @@ function Cart({ setCanShowCart }: CartProps) {
                 />
               </div>
               <div className="flex w-60 flex-col gap-2">
-                <h2>{trimText(item.title, 50)}</h2>
-                <h3 className="font-semibold">{`$ ${item.price}`}</h3>
+                <div>
+                  <h2>{trimText(item.title, 20)}</h2>
+                  <h1 className="font-semibold">{`$ ${item.price}`}</h1>
+                </div>
+                <div>
+                  <h3>{`qty: ${item.quantity}`}</h3>
+                </div>
               </div>
             </div>
           ))}

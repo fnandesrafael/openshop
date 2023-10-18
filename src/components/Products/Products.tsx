@@ -9,7 +9,7 @@ import useCartStore from '../../store/cartStore';
 
 function Products() {
   const { products, filteredProducts, setProducts } = useProductStore();
-  const { addToCart } = useCartStore();
+  const { cartItems, addToCart, increaseQuantity } = useCartStore();
   useQuery({
     queryKey: ['products'],
     queryFn: getProducts,
@@ -19,8 +19,13 @@ function Products() {
 
   const handleAddToCart = (targetId: number) => {
     const targetProduct = products.find((product) => product.id === targetId);
+    const itemExists = cartItems.find((item) => item.id === targetProduct.id);
 
-    addToCart([targetProduct]);
+    if (itemExists === undefined) {
+      addToCart({ ...targetProduct, quantity: 1 });
+    } else {
+      increaseQuantity(targetProduct);
+    }
   };
 
   return (
