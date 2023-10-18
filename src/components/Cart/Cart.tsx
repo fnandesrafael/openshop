@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import { motion } from 'framer-motion';
 import { BsArrowRightShort } from 'react-icons/bs';
 import useCartStore from '../../store/cartStore';
+import trimText from '../../utils/trimText';
 
 type CartProps = {
   setCanShowCart: React.Dispatch<React.SetStateAction<boolean>>;
@@ -29,7 +30,7 @@ function Cart({ setCanShowCart }: CartProps) {
           </h1>
 
           <button
-            className="rounded-full p-1 transition-all ease-in-out  hover:bg-slate-50"
+            className="translate-x-3 rounded-full p-1 transition-all ease-in-out hover:bg-slate-50"
             role="close-btn"
             onClick={() => setCanShowCart(false)}
           >
@@ -37,14 +38,26 @@ function Cart({ setCanShowCart }: CartProps) {
           </button>
         </header>
 
-        <section className="mt-4 flex h-full w-full flex-col gap-4 p-4">
-          <div className="no-scrollbar overflow-y-scroll">
-            {cartItems.map((item) => (
-              <div className="h-32 w-full">
-                <h2>{item.title}</h2>
+        <section className="no-scrollbar flex h-full w-full flex-col overflow-y-scroll p-4 pb-20">
+          {cartItems.map((item) => (
+            <div
+              key={item.id}
+              className="flex flex-row items-center gap-4 border-b border-zinc-100 p-2"
+            >
+              <div className="flex h-32 w-32 items-center justify-center overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.description}
+                  loading="lazy"
+                  className="w-24 object-contain p-4"
+                />
               </div>
-            ))}
-          </div>
+              <div className="flex w-60 flex-col gap-2">
+                <h2>{trimText(item.title, 50)}</h2>
+                <h3 className="font-semibold">{`$ ${item.price}`}</h3>
+              </div>
+            </div>
+          ))}
         </section>
       </motion.aside>
 
