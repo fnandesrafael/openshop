@@ -8,7 +8,7 @@ type HeaderProps = {
 function Header({ setCanShowCart }: HeaderProps) {
   return (
     <header
-      className="fixed z-10 flex h-20 w-full flex-row items-center justify-between bg-gray-200 p-8 shadow-sm"
+      className="fixed z-10 flex h-20 w-full flex-row items-center justify-between bg-gray-200 p-8 opacity-95 shadow-sm"
       role="header"
     >
       <h1 className="text-xl font-semibold" role="heading">
