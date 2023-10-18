@@ -1,12 +1,15 @@
 import React, { memo } from 'react';
 import { motion } from 'framer-motion';
 import { BsArrowRightShort } from 'react-icons/bs';
+import useCartStore from '../../store/cartStore';
 
 type CartProps = {
   setCanShowCart: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 function Cart({ setCanShowCart }: CartProps) {
+  const { cartItems } = useCartStore();
+
   return (
     <>
       <motion.aside
@@ -33,6 +36,16 @@ function Cart({ setCanShowCart }: CartProps) {
             <BsArrowRightShort className="text-3xl" />
           </button>
         </header>
+
+        <section className="mt-4 flex h-full w-full flex-col gap-4 p-4">
+          <div className="no-scrollbar overflow-y-scroll">
+            {cartItems.map((item) => (
+              <div className="h-32 w-full">
+                <h2>{item.title}</h2>
+              </div>
+            ))}
+          </div>
+        </section>
       </motion.aside>
 
       <motion.span
