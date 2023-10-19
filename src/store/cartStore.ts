@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { ProductProps } from '../api';
 
-type CartItemProps = {
+export type CartItemProps = {
   quantity: number;
 } & ProductProps;
 

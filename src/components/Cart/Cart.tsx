@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { BsArrowRightShort } from 'react-icons/bs';
 import useCartStore from '../../store/cartStore';
 import trimText from '../../utils/trimText';
+import sum from '../../utils/sum';
 
 type CartProps = {
   setCanShowCart: React.Dispatch<React.SetStateAction<boolean>>;
@@ -30,7 +31,7 @@ function Cart({ setCanShowCart }: CartProps) {
           </h1>
 
           <button
-            className="translate-x-3 rounded-full p-1 transition-all ease-in-out hover:bg-slate-50"
+            className="translate-x-3 rounded-full p-1 transition-all ease-in-out hover:bg-slate-200"
             role="close-btn"
             onClick={() => setCanShowCart(false)}
           >
@@ -38,7 +39,7 @@ function Cart({ setCanShowCart }: CartProps) {
           </button>
         </header>
 
-        <section className="no-scrollbar flex h-full w-full flex-col overflow-y-scroll p-4 pb-20">
+        <section className="flex h-full w-full flex-col overflow-y-scroll p-4 pb-[7.5rem] pt-0">
           {cartItems.map((item) => (
             <div
               key={item.id}
@@ -54,8 +55,8 @@ function Cart({ setCanShowCart }: CartProps) {
               </div>
               <div className="flex w-60 flex-col gap-2">
                 <div>
-                  <h2>{trimText(item.title, 20)}</h2>
-                  <h1 className="font-semibold">{`$ ${item.price}`}</h1>
+                  <h2 className="text-sm">{trimText(item.title, 25)}</h2>
+                  <h1 className="text-base font-semibold">{`$ ${item.price}`}</h1>
                 </div>
                 <div>
                   <h3>{`qty: ${item.quantity}`}</h3>
@@ -64,6 +65,11 @@ function Cart({ setCanShowCart }: CartProps) {
             </div>
           ))}
         </section>
+
+        <div className="left absolute bottom-0 flex w-full flex-row items-center justify-between bg-slate-200 p-4">
+          <h1 className="text-lg">Total Cart: </h1>
+          <b className="text-lg font-semibold">$ {sum(cartItems, 'price')}</b>
+        </div>
       </motion.aside>
 
       <motion.span

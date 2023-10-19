@@ -1,6 +1,13 @@
-const sum = (array: Array<object>, key: 'quantity' | 'price') => {
+import { CartItemProps } from '../store/cartStore';
+
+const sum = (array: Array<CartItemProps>, key: 'quantity' | 'price') => {
+  if (key === 'quantity') {
+    return array.reduce((acc, cur) => {
+      return acc + cur.quantity;
+    }, 0);
+  }
   return array.reduce((acc, cur) => {
-    return acc + cur[key];
+    return acc + cur.price * cur.quantity;
   }, 0);
 };
 
