@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { IoCartOutline } from 'react-icons/io5';
+import { motion } from 'framer-motion';
 import sum from '../../utils/sum';
 import useCartStore from '../../store/cartStore';
 
@@ -28,12 +29,14 @@ function Header({ setCanShowCart }: HeaderProps) {
           <IoCartOutline className="mr-[2px] text-2xl" />
         </button>
 
-        <span
-          className="pointer-events-none absolute -bottom-2 -left-1 flex h-5 w-5 flex-col items-center justify-center rounded-full border-[1px] border-solid border-slate-200 bg-black text-xs text-slate-200"
+        <motion.span
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          className="pointer-events-none absolute -bottom-2 -left-1 flex h-6 w-6 flex-col items-center justify-center rounded-full border-[1px] border-solid border-slate-200 bg-black text-xs text-slate-200"
           role="log"
         >
           {sum(cartItems, 'quantity')}
-        </span>
+        </motion.span>
       </div>
     </header>
   );
