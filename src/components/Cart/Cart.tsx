@@ -29,7 +29,7 @@ function Cart({ setCanShowCart }: CartProps) {
           role="header"
         >
           <h1 className="text-lg" role="heading">
-            Cart Items
+            Cart Items:
           </h1>
 
           <button
