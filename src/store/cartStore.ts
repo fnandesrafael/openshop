@@ -8,6 +8,7 @@ export type CartItemProps = {
 type CartStoreProps = {
   cartItems: Array<CartItemProps>;
   addToCart: (payload: CartItemProps) => void;
+  removeFromCart: (payload: CartItemProps) => void;
   increaseQuantity: (payload: CartItemProps | ProductProps) => void;
   decreaseQuantity: (payload: CartItemProps | ProductProps) => void;
 };
@@ -16,6 +17,12 @@ const useCartStore = create<CartStoreProps>((set) => ({
   cartItems: [],
   addToCart: (payload) =>
     set((prevState) => ({ cartItems: [...prevState.cartItems, payload] })),
+  removeFromCart: (payload) =>
+    set((prevState) => ({
+      cartItems: prevState.cartItems.filter((item) => {
+        return item.id !== payload.id;
+      }),
+    })),
   increaseQuantity: (payload) =>
     set((prevState) => ({
       cartItems: prevState.cartItems.map((item) => {
