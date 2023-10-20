@@ -10,7 +10,7 @@ type CartProps = {
 };
 
 function Cart({ setCanShowCart }: CartProps) {
-  const { cartItems } = useCartStore();
+  const { cartItems, increaseQuantity, decreaseQuantity } = useCartStore();
 
   return (
     <>
@@ -53,22 +53,47 @@ function Cart({ setCanShowCart }: CartProps) {
                   className="w-24 object-contain p-4"
                 />
               </div>
+
               <div className="flex w-60 flex-col gap-2">
                 <div>
-                  <h2 className="text-sm">{trimText(item.title, 25)}</h2>
+                  <h2 className="text-sm">{trimText(item.title, 26)}</h2>
                   <h1 className="text-base font-semibold">{`$ ${item.price}`}</h1>
                 </div>
-                <div>
-                  <h3>{`qty: ${item.quantity}`}</h3>
+
+                <div className="flex flex-row justify-between">
+                  <h3>quantity: </h3>
+                  <div className="flex flex-row items-center justify-end gap-4">
+                    <motion.button
+                      className="flex h-5 w-5 items-center justify-center bg-black text-lg text-white"
+                      onClick={() => decreaseQuantity(item)}
+                      initial={{ scale: 1 }}
+                      whileTap={{ scale: 0.85, backgroundColor: '#7a7a7a' }}
+                      transition={{ duration: 0.2, ease: 'easeInOut' }}
+                    >
+                      -
+                    </motion.button>
+                    <span>{item.quantity}</span>
+                    <motion.button
+                      className="flex h-5 w-5 items-center justify-center bg-black text-lg text-white"
+                      onClick={() => increaseQuantity(item)}
+                      initial={{ scale: 1 }}
+                      whileTap={{ scale: 0.85, backgroundColor: '#7a7a7a' }}
+                      transition={{ duration: 0.2, ease: 'easeInOut' }}
+                    >
+                      +
+                    </motion.button>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         </section>
 
-        <div className="left absolute bottom-0 flex w-full flex-row items-center justify-between bg-slate-200 p-4">
+        <div className="absolute bottom-0 flex w-full flex-row items-center justify-between bg-slate-200 p-4 pl-5">
           <h1 className="text-lg">Total Cart: </h1>
-          <b className="text-lg font-semibold">$ {sum(cartItems, 'price')}</b>
+          <b className="text-lg font-semibold">
+            $ {sum(cartItems, 'price').toFixed(2)}
+          </b>
         </div>
       </motion.aside>
 

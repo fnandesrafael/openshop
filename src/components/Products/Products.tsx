@@ -9,7 +9,7 @@ import useCartStore from '../../store/cartStore';
 
 function Products() {
   const { products, filteredProducts, setProducts } = useProductStore();
-  const { cartItems, addToCart, increaseQuantity } = useCartStore();
+  const { cartItems, addToCart } = useCartStore();
   useQuery({
     queryKey: ['products'],
     queryFn: getProducts,
@@ -23,8 +23,6 @@ function Products() {
 
     if (itemExists === undefined) {
       addToCart({ ...targetProduct, quantity: 1 });
-    } else {
-      increaseQuantity(targetProduct);
     }
   };
 
