@@ -28,9 +28,7 @@ function Cart({ setCanShowCart }: CartProps) {
           className="flex h-16 w-full flex-row items-center justify-between p-6 shadow-sm"
           role="header"
         >
-          <h1 className="text-lg" role="heading">
-            Cart Items:
-          </h1>
+          <h1 className="text-lg">Cart Items:</h1>
 
           <button
             className="translate-x-3 rounded-full p-1 transition-all ease-in-out hover:bg-slate-200"
