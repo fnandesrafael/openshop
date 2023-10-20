@@ -4,6 +4,18 @@
 @tailwind utilities;
 @tailwind variants;
 
+@layer utilities {
+  @variants responsive {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+  }
+}
 
 * {
   box-sizing: border-box;
@@ -12,12 +24,12 @@
   padding: 0;
 }
 
-body::-webkit-scrollbar {
+*::-webkit-scrollbar {
   background-color: white;
-  width: 0.5rem;
+  width: 0.75rem;
 
 }
 
-body::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background-color: black;
 }

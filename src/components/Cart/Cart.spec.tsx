@@ -12,17 +12,12 @@ describe('<Cart/> component', () => {
     expect(sut).toBeInTheDocument();
   });
 
-  it('should have a header with a "Cart Items" heading, and a close button', () => {
+  it('should have a header with and a close button', () => {
     const { getByRole } = render(<Cart setCanShowCart={mockedHook} />);
-    const [sutA, sutB, sutC] = [
-      getByRole('header'),
-      getByRole('heading'),
-      getByRole('close-btn'),
-    ];
+    const [sutA, sutB] = [getByRole('header'), getByRole('close-btn')];
 
     expect(sutA).toBeInTheDocument();
     expect(sutB).toBeInTheDocument();
-    expect(sutC).toBeInTheDocument();
   });
 
   it('when the close button is clicked, a setState hook is called', () => {

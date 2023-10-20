@@ -5,15 +5,26 @@ import { useQuery } from 'react-query';
 import { getProducts } from '../../api';
 import trimText from '../../utils/trimText';
 import useProductStore from '../../store/productStore';
+import useCartStore from '../../store/cartStore';
 
 function Products() {
   const { products, filteredProducts, setProducts } = useProductStore();
+  const { cartItems, addToCart } = useCartStore();
   useQuery({
     queryKey: ['products'],
     queryFn: getProducts,
     suspense: true,
     onSuccess: (data) => setProducts(data),
   });
+
+  const handleAddToCart = (targetId: number) => {
+    const targetProduct = products.find((product) => product.id === targetId);
+    const itemExists = cartItems.find((item) => item.id === targetProduct.id);
+
+    if (itemExists === undefined) {
+      addToCart({ ...targetProduct, quantity: 1 });
+    }
+  };
 
   return (
     <>
@@ -34,6 +45,7 @@ function Products() {
                 transition={{ duration: 0.2, ease: 'easeInOut' }}
                 className="absolute -right-16 bottom-2 z-10 flex h-12 w-12 flex-col items-center justify-center rounded-sm bg-black shadow-sm transition-[right] duration-300 ease-in-out group-hover:right-2"
                 role="add-btn"
+                onClick={() => handleAddToCart(product.id)}
               >
                 <TbShoppingCartPlus className="mr-0.5 text-xl text-white" />
               </motion.button>
@@ -50,7 +62,9 @@ function Products() {
               className="flex h-[20%] flex-col justify-start"
               role="contentinfo"
             >
-              <h1 className="text-xl font-semibold">{`$ ${product.price}`}</h1>
+              <h1 className="text-xl font-semibold">{`$ ${product.price.toFixed(
+                2,
+              )}`}</h1>
               <span
                 className={`text-sm ${
                   product.rating.rate < 3
