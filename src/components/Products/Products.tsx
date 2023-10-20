@@ -62,7 +62,9 @@ function Products() {
               className="flex h-[20%] flex-col justify-start"
               role="contentinfo"
             >
-              <h1 className="text-xl font-semibold">{`$ ${product.price}`}</h1>
+              <h1 className="text-xl font-semibold">{`$ ${product.price.toFixed(
+                2,
+              )}`}</h1>
               <span
                 className={`text-sm ${
                   product.rating.rate < 3
