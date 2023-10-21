@@ -1,4 +1,5 @@
 import React, { Suspense, useState, lazy } from 'react';
+import { BsCartCheck } from 'react-icons/bs';
 import { AnimatePresence } from 'framer-motion';
 import Header from './components/Header';
 import Cart from './components/Cart';
@@ -6,16 +7,36 @@ import SearchBar from './components/SearchBar';
 import { Skeleton as SearchTagsSkeleton } from './components/SearchTags';
 import { Skeleton as ProductsSkeleton } from './components/Products';
 import Hero from './components/Hero';
+import Notification from './components/Notification';
 
 const SearchTags = lazy(() => import('./components/SearchTags'));
 const Products = lazy(() => import('./components/Products'));
 
 function App() {
   const [canShowCart, setCanShowCart] = useState(false);
+  const [itemAdded, setItemAdded] = useState(false);
+  const [itemAlreadyAdded, setItemAlreadyAdded] = useState(false);
 
   return (
     <div className="h-full min-h-screen w-full bg-gray-200" role="application">
       <Header setCanShowCart={setCanShowCart} />
+
+      <AnimatePresence mode="wait">
+        {itemAdded && (
+          <Notification
+            icon={<BsCartCheck className="text-base text-emerald-400" />}
+          >
+            product added to your cart.
+          </Notification>
+        )}
+        {itemAlreadyAdded && (
+          <Notification
+            icon={<BsCartCheck className="text-base text-red-500" />}
+          >
+            product is already in your cart.
+          </Notification>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence mode="wait">
         {canShowCart && <Cart setCanShowCart={setCanShowCart} />}
@@ -33,7 +54,10 @@ function App() {
 
         <main className="mb-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-6">
           <Suspense fallback={<ProductsSkeleton />}>
-            <Products />
+            <Products
+              setItemAdded={setItemAdded}
+              setItemAlreadyAdded={setItemAlreadyAdded}
+            />
           </Suspense>
         </main>
       </div>

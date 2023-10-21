@@ -7,7 +7,12 @@ import trimText from '../../utils/trimText';
 import useProductStore from '../../store/productStore';
 import useCartStore from '../../store/cartStore';
 
-function Products() {
+type ProductsProps = {
+  setItemAdded: React.Dispatch<React.SetStateAction<boolean>>;
+  setItemAlreadyAdded: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+function Products({ setItemAdded, setItemAlreadyAdded }: ProductsProps) {
   const { products, filteredProducts, setProducts } = useProductStore();
   const { cartItems, addToCart } = useCartStore();
   useQuery({
@@ -22,7 +27,18 @@ function Products() {
     const itemExists = cartItems.find((item) => item.id === targetProduct.id);
 
     if (itemExists === undefined) {
+      setItemAdded(true);
       addToCart({ ...targetProduct, quantity: 1 });
+
+      setTimeout(() => {
+        setItemAdded(false);
+      }, 1000);
+    } else {
+      setItemAlreadyAdded(true);
+
+      setTimeout(() => {
+        setItemAlreadyAdded(false);
+      }, 1000);
     }
   };
 
