@@ -15,21 +15,17 @@ function Cart({ setCanShowCart }: CartProps) {
     useCartStore();
 
   useLayoutEffect(() => {
-    const handleCartClose = (e: MouseEvent | KeyboardEvent) => {
+    const handleKeydown = (e: KeyboardEvent) => {
       e.preventDefault();
 
-      if (
-        e instanceof MouseEvent ||
-        (e instanceof KeyboardEvent && e.key === 'Escape')
-      ) {
+      if (e.key === 'Escape') {
         setCanShowCart(false);
       }
     };
-
-    document.addEventListener('keydown', handleCartClose);
+    document.addEventListener('keydown', handleKeydown);
 
     return () => {
-      document.removeEventListener('keydown', handleCartClose);
+      document.removeEventListener('keydown', handleKeydown);
     };
   }, [setCanShowCart]);
 
@@ -74,7 +70,7 @@ function Cart({ setCanShowCart }: CartProps) {
                   exit={{ opacity: 0, x: 200, transition: { duration: 0.2 } }}
                 >
                   <button
-                    className="absolute right-2 top-8"
+                    className="absolute right-6 top-8"
                     onClick={() => removeFromCart(item)}
                   >
                     <AiOutlineDelete className="text-xl transition-colors duration-200 hover:text-red-500" />
@@ -89,7 +85,7 @@ function Cart({ setCanShowCart }: CartProps) {
                     />
                   </div>
 
-                  <div className="flex w-60 flex-col gap-2">
+                  <div className="mr-4 flex w-60 flex-col gap-2">
                     <div>
                       <h2 className="text-sm">{trimText(item.title, 22)}</h2>
                       <h1 className="text-base font-semibold">{`$ ${item.price}`}</h1>
@@ -148,6 +144,7 @@ function Cart({ setCanShowCart }: CartProps) {
         animate={{ opacity: 0.25 }}
         exit={{ opacity: 0 }}
         className="fixed z-10 h-full w-full bg-black opacity-10"
+        onClick={() => setCanShowCart(false)}
       />
     </>
   );
