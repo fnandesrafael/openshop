@@ -16,12 +16,12 @@ function Header({ setCanShowCart }: HeaderProps) {
 
   return (
     <motion.header
-      className="fixed z-10 flex h-20 w-full flex-row items-center justify-between p-8 opacity-95 transition-all duration-500 ease-in-out"
+      className="fixed z-10 flex h-16 w-full flex-row items-center justify-between p-5 pr-4 opacity-95 transition-all duration-500 ease-in-out md:h-20 md:p-8"
       style={{ backgroundColor, boxShadow }}
       role="header"
     >
       <motion.h1
-        className="text-xl font-semibold transition-colors duration-500 ease-in-out"
+        className="text-lg font-semibold transition-colors duration-500 ease-in-out md:text-xl"
         style={{ color: textColor }}
         role="heading"
       >
@@ -33,17 +33,17 @@ function Header({ setCanShowCart }: HeaderProps) {
         style={{ opacity: cartButtonOpacity }}
       >
         <button
-          className="flex h-12 w-12 flex-col items-center justify-center rounded-full border-[1px] border-solid border-black transition-all ease-in-out hover:bg-black hover:text-slate-200 hover:transition-all"
+          className="flex h-10 w-10 flex-col items-center justify-center rounded-full border-[1px] border-solid border-black transition-all ease-in-out hover:bg-black hover:text-slate-200 hover:transition-all md:h-12 md:w-12"
           role="cart-btn"
           onClick={() => setCanShowCart(true)}
         >
-          <IoCartOutline className="mr-[2px] text-2xl" />
+          <IoCartOutline className="mr-[2px] text-lg md:text-2xl" />
         </button>
 
         <motion.span
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          className="pointer-events-none absolute -bottom-2 -left-1 flex h-6 w-6 flex-col items-center justify-center rounded-full bg-black text-xs text-slate-200"
+          className="pointer-events-none absolute -bottom-2 -left-1 flex h-5 w-5 flex-col items-center justify-center rounded-full bg-black text-xs text-slate-200 md:h-6 md:w-6"
           role="log"
         >
           {sum(cartItems, 'quantity')}
