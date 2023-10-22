@@ -29,7 +29,7 @@ function SearchTags() {
   }, [tags]);
 
   return (
-    <div className="flex flex-row gap-4 rounded-sm">
+    <div className="flex flex-row justify-between md:justify-start md:gap-4">
       {categories?.map((category, index) => (
         <motion.label
           key={index}
@@ -41,7 +41,7 @@ function SearchTags() {
           }`}
           htmlFor={category}
         >
-          <p className="p-3">{category}</p>
+          <p className="p-2 text-[0.7rem] md:p-3 md:text-base">{category}</p>
           <input
             className="hidden"
             type="checkbox"
