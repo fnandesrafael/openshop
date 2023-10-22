@@ -24,7 +24,7 @@ function Header({ setCanShowCart }: HeaderProps) {
         style={{ color: textColor }}
         role="heading"
       >
-        openshop
+        <a href="/">openshop</a>
       </motion.h1>
 
       <motion.div
