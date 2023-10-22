@@ -14,9 +14,7 @@ export default function CartItems() {
         <motion.div
           key={item.id}
           className="relative flex w-full flex-row items-center gap-4 border-b border-zinc-100"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0, x: 200, transition: { duration: 0.2 } }}
+          exit={{ x: 375 }}
         >
           <div className="flex h-32 w-32 items-center justify-center overflow-hidden">
             <img

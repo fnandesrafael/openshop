@@ -64,8 +64,8 @@ function App() {
         </main>
       </div>
 
-      <footer className="flex h-[3.75rem] w-full flex-col items-center justify-center bg-slate-300 p-4 text-slate-400">
-        Copyright(c) 2023 - Rafael Fernandes de Lima
+      <footer className="flex h-[3.75rem] w-full flex-col items-center justify-center bg-slate-300 p-4 text-center text-xs text-slate-400 md:text-base">
+        Copyright © 2023 - Rafael Fernandes de Lima
       </footer>
     </div>
   );
