@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { IoCartOutline } from 'react-icons/io5';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import sum from '../../utils/sum';
 import useCartStore from '../../store/cartStore';
 
@@ -10,15 +10,33 @@ type HeaderProps = {
 
 function Header({ setCanShowCart }: HeaderProps) {
   const { cartItems } = useCartStore();
+  const { scrollYProgress } = useScroll();
+
+  const backgroundColor = useTransform(
+    scrollYProgress,
+    [0, 0.01],
+    ['transparent', '#e5e7eb'],
+  );
+  const textColor = useTransform(scrollYProgress, [0, 0.01], ['#fff', '#000']);
+  const boxShadow = useTransform(
+    scrollYProgress,
+    [0, 0.01],
+    ['none', '0 1px 2px 0 rgb(0 0 0 / 0.05)'],
+  );
 
   return (
-    <header
-      className="fixed z-10 flex h-20 w-full flex-row items-center justify-between bg-gray-200 p-8 opacity-95 shadow-sm"
+    <motion.header
+      className="fixed z-10 flex h-20 w-full flex-row items-center justify-between p-8 opacity-95 transition-all duration-500 ease-in-out"
+      style={{ backgroundColor, boxShadow }}
       role="header"
     >
-      <h1 className="text-xl font-semibold" role="heading">
+      <motion.h1
+        className="text-xl font-semibold transition-colors duration-500 ease-in-out"
+        style={{ color: textColor }}
+        role="heading"
+      >
         openshop
-      </h1>
+      </motion.h1>
 
       <div className="relative">
         <button
@@ -32,14 +50,14 @@ function Header({ setCanShowCart }: HeaderProps) {
         <motion.span
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          className="pointer-events-none absolute -bottom-2 -left-1 flex h-6 w-6 flex-col items-center justify-center rounded-full border-[1px] border-solid border-slate-200 bg-black text-xs text-slate-200"
+          className="pointer-events-none absolute -bottom-2 -left-1 flex h-6 w-6 flex-col items-center justify-center rounded-full bg-black text-xs text-slate-200"
           role="log"
         >
           {sum(cartItems, 'quantity')}
         </motion.span>
       </div>
-    </header>
+    </motion.header>
   );
 }
 
-export default memo(Header);
+export default Header;
