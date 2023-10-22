@@ -24,14 +24,16 @@ function App() {
       <AnimatePresence mode="wait">
         {itemAdded && (
           <Notification
-            icon={<BsCartCheck className="text-base text-emerald-400" />}
+            icon={
+              <BsCartCheck className="text-base text-emerald-400 md:text-lg" />
+            }
           >
             product added to your cart.
           </Notification>
         )}
         {itemAlreadyAdded && (
           <Notification
-            icon={<BsCartCheck className="text-base text-red-500" />}
+            icon={<BsCartCheck className="text-base text-red-500 md:text-lg" />}
           >
             product is already in your cart.
           </Notification>
