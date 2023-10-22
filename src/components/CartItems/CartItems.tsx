@@ -13,18 +13,11 @@ export default function CartItems() {
       {cartItems.map((item) => (
         <motion.div
           key={item.id}
-          className="relative flex flex-row items-center gap-4 border-b border-zinc-100 p-2"
+          className="relative flex w-full flex-row items-center gap-4 border-b border-zinc-100"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, x: 200, transition: { duration: 0.2 } }}
         >
-          <button
-            className="absolute right-6 top-8"
-            onClick={() => removeFromCart(item)}
-          >
-            <AiOutlineDelete className="text-xl transition-colors duration-200 hover:text-red-500" />
-          </button>
-
           <div className="flex h-32 w-32 items-center justify-center overflow-hidden">
             <img
               src={item.image}
@@ -34,9 +27,14 @@ export default function CartItems() {
             />
           </div>
 
-          <div className="mr-4 flex w-60 flex-col gap-2">
-            <div>
+          <div className="flex w-full flex-col gap-2">
+            <div className="flex flex-row justify-between">
               <h2 className="text-sm">{trimText(item.title, 22)}</h2>
+              <button onClick={() => removeFromCart(item)}>
+                <AiOutlineDelete className="text-xl transition-colors duration-200 hover:text-red-500" />
+              </button>
+            </div>
+            <div>
               <h1 className="text-base font-semibold">{`$ ${item.price}`}</h1>
             </div>
 
