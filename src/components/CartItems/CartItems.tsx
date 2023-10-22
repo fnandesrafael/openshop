@@ -27,7 +27,7 @@ export default function CartItems() {
 
           <div className="flex w-full flex-col gap-2">
             <div className="flex flex-row justify-between">
-              <h2 className="text-sm">{trimText(item.title, 22)}</h2>
+              <h2 className="text-base">{trimText(item.title, 22)}</h2>
               <button onClick={() => removeFromCart(item)}>
                 <AiOutlineDelete className="text-xl transition-colors duration-200 hover:text-red-500" />
               </button>
