@@ -24,16 +24,18 @@ function App() {
       <AnimatePresence mode="wait">
         {itemAdded && (
           <Notification
-            icon={<BsCartCheck className="text-base text-emerald-400" />}
+            icon={
+              <BsCartCheck className="text-base text-emerald-400 md:text-lg" />
+            }
           >
             product added to your cart.
           </Notification>
         )}
         {itemAlreadyAdded && (
           <Notification
-            icon={<BsCartCheck className="text-base text-red-500" />}
+            icon={<BsCartCheck className="text-base text-red-500 md:text-lg" />}
           >
-            product is already in your cart.
+            product already in your cart.
           </Notification>
         )}
       </AnimatePresence>
@@ -45,14 +47,14 @@ function App() {
       <Hero />
 
       <div className="mx-[4%] flex flex-col items-center justify-center">
-        <section className="my-[4%] flex w-[18rem] flex-col gap-4 sm:w-[38rem] xl:w-[78rem] 2xl:w-[118rem]">
+        <section className="my-[4%] flex w-[18rem] flex-col gap-4 sm:w-[38rem] xl:w-[78rem] 2xl:w-[106rem]">
           <SearchBar />
           <Suspense fallback={<SearchTagsSkeleton />}>
             <SearchTags />
           </Suspense>
         </section>
 
-        <main className="mb-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-6">
+        <main className="mb-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 2xl:gap-16">
           <Suspense fallback={<ProductsSkeleton />}>
             <Products
               setItemAdded={setItemAdded}
@@ -61,6 +63,10 @@ function App() {
           </Suspense>
         </main>
       </div>
+
+      <footer className="flex h-[3.75rem] w-full flex-col items-center justify-center bg-slate-300 p-4 text-center text-xs text-slate-400 md:text-base">
+        Copyright © 2023 - Rafael Fernandes de Lima
+      </footer>
     </div>
   );
 }
