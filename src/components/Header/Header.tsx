@@ -11,8 +11,7 @@ type HeaderProps = {
 
 function Header({ setCanShowCart }: HeaderProps) {
   const { cartItems } = useCartStore();
-  const { backgroundColor, boxShadow, cartButtonOpacity, textColor } =
-    useHeaderStyles();
+  const { backgroundColor, boxShadow, opacity, textColor } = useHeaderStyles();
 
   return (
     <motion.header
@@ -30,7 +29,7 @@ function Header({ setCanShowCart }: HeaderProps) {
 
       <motion.div
         className="relative transition-opacity duration-500 ease-in-out"
-        style={{ opacity: cartButtonOpacity }}
+        style={{ opacity }}
       >
         <button
           className="flex h-10 w-10 flex-col items-center justify-center rounded-full border-[1px] border-solid border-black transition-all ease-in-out hover:bg-black hover:text-slate-200 hover:transition-all md:h-12 md:w-12 2xl:h-14 2xl:w-14"
