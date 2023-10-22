@@ -8,14 +8,15 @@ const useHeaderStyles = () => {
     [0, 0.01],
     ['transparent', '#e5e7eb'],
   );
-  const textColor = useTransform(scrollYProgress, [0, 0.01], ['#fff', '#000']);
   const boxShadow = useTransform(
     scrollYProgress,
     [0, 0.01],
     ['none', '0 1px 2px 0 rgb(0 0 0 / 0.05)'],
   );
+  const cartButtonOpacity = useTransform(scrollYProgress, [0, 0.01], [0, 1]);
+  const textColor = useTransform(scrollYProgress, [0, 0.01], ['#fff', '#000']);
 
-  return { backgroundColor, textColor, boxShadow };
+  return { backgroundColor, boxShadow, cartButtonOpacity, textColor };
 };
 
 export default useHeaderStyles;

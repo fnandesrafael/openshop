@@ -11,7 +11,8 @@ type HeaderProps = {
 
 function Header({ setCanShowCart }: HeaderProps) {
   const { cartItems } = useCartStore();
-  const { backgroundColor, boxShadow, textColor } = useHeaderStyles();
+  const { backgroundColor, boxShadow, cartButtonOpacity, textColor } =
+    useHeaderStyles();
 
   return (
     <motion.header
@@ -27,7 +28,10 @@ function Header({ setCanShowCart }: HeaderProps) {
         openshop
       </motion.h1>
 
-      <div className="relative">
+      <motion.div
+        className="relative transition-opacity duration-500 ease-in-out"
+        style={{ opacity: cartButtonOpacity }}
+      >
         <button
           className="flex h-12 w-12 flex-col items-center justify-center rounded-full border-[1px] border-solid border-black transition-all ease-in-out hover:bg-black hover:text-slate-200 hover:transition-all"
           role="cart-btn"
@@ -44,7 +48,7 @@ function Header({ setCanShowCart }: HeaderProps) {
         >
           {sum(cartItems, 'quantity')}
         </motion.span>
-      </div>
+      </motion.div>
     </motion.header>
   );
 }
