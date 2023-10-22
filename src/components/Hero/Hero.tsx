@@ -14,7 +14,7 @@ function Hero() {
       <motion.h1
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: 4, delay: 0.6 } }}
-        className="absolute left-5 top-20 w-3/4 font-serif text-4xl font-extralight leading-tight tracking-wide text-white md:left-7 md:top-40 md:w-4/6 md:text-[8vw] 2xl:top-72"
+        className="mobile-l:w-80 mobile-m:text-4xl mobile-l:text-5xl absolute bottom-8 left-[5%] font-serif text-3xl font-extralight tracking-wide text-white md:bottom-10 md:w-[38rem] md:text-[4rem] md:leading-[1.2] lg:bottom-32 lg:w-[42rem] lg:text-[5rem] 2xl:w-[72rem] 2xl:text-[8rem]"
       >
         Mussum ipsum cacilds vidis litro abertis.
       </motion.h1>

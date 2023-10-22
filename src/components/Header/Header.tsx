@@ -20,7 +20,7 @@ function Header({ setCanShowCart }: HeaderProps) {
       role="header"
     >
       <motion.h1
-        className="text-lg font-semibold transition-colors duration-500 ease-in-out md:text-xl 2xl:text-3xl"
+        className="text-lg font-semibold transition-colors duration-500 ease-in-out md:text-lg 2xl:p-6 2xl:text-2xl"
         style={{ color: textColor }}
         role="heading"
       >
