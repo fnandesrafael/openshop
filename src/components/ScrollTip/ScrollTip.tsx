@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 export default function ScrollTip() {
   return (
     <div
-      className="absolute bottom-28 right-12 flex items-center justify-around"
+      className="absolute bottom-28 right-12 hidden items-center justify-around sm:flex"
       role="icon"
     >
       <motion.svg
