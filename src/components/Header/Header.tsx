@@ -1,8 +1,9 @@
 import React from 'react';
 import { IoCartOutline } from 'react-icons/io5';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import sum from '../../utils/sum';
 import useCartStore from '../../store/cartStore';
+import useHeaderStyles from '../../hooks/useHeaderStyles';
 
 type HeaderProps = {
   setCanShowCart: React.Dispatch<React.SetStateAction<boolean>>;
@@ -10,19 +11,7 @@ type HeaderProps = {
 
 function Header({ setCanShowCart }: HeaderProps) {
   const { cartItems } = useCartStore();
-  const { scrollYProgress } = useScroll();
-
-  const backgroundColor = useTransform(
-    scrollYProgress,
-    [0, 0.01],
-    ['transparent', '#e5e7eb'],
-  );
-  const textColor = useTransform(scrollYProgress, [0, 0.01], ['#fff', '#000']);
-  const boxShadow = useTransform(
-    scrollYProgress,
-    [0, 0.01],
-    ['none', '0 1px 2px 0 rgb(0 0 0 / 0.05)'],
-  );
+  const { backgroundColor, boxShadow, textColor } = useHeaderStyles();
 
   return (
     <motion.header
