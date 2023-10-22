@@ -1,4 +1,4 @@
-import React, { Suspense, useState, lazy } from 'react';
+import React, { Suspense, useState, lazy, useLayoutEffect } from 'react';
 import { BsCartCheck } from 'react-icons/bs';
 import { AnimatePresence } from 'framer-motion';
 import Header from './components/Header';
@@ -16,6 +16,14 @@ function App() {
   const [canShowCart, setCanShowCart] = useState(false);
   const [itemAdded, setItemAdded] = useState(false);
   const [itemAlreadyAdded, setItemAlreadyAdded] = useState(false);
+
+  useLayoutEffect(() => {
+    if (canShowCart) {
+      document.body.style.cssText = 'overflow: hidden';
+    } else {
+      document.body.style.cssText = 'overflow: auto';
+    }
+  }, [canShowCart]);
 
   return (
     <div className="h-full min-h-screen w-full bg-gray-200" role="application">
